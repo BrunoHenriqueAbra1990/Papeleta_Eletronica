@@ -1,0 +1,82 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+body{
+	background-color: #e6e9f2;
+}
+
+#conteudo{
+	
+	margin-top: 30px;
+	width:auto;
+	margin:0 auto;
+	font-family:Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size:14px;
+	padding-bottom: 0px;
+	margin-left: 1%; 
+	margin-right: 1%;
+	
+	
+	border:rgb(0 123 255 / 25%) solid 3px; 
+	border-radius:10px;
+	padding:10px;
+	margin-bottom: 10px;
+	background-color:#afb3b7;
+}
+
+h1{
+	text-align: center;
+}
+
+
+#editar_fornecedor{
+	margin-top: 21px;
+}
+
+.form-control-file{
+	border:#1d1d1d solid 1px;
+	border-radius:10px;
+	background-color: white;
+	height:35px;
+	padding-top: 3px;
+}
+
+.obrigatorio{
+	font-weight: bold;
+	color: red;
+	font-size: 14px;
+}
+
+
+label{
+	margin-bottom: 0px !important;
+	
+}
+
+.aliq_iss{
+	padding:5px;
+}
+
+.red{
+	font-color: red;
+}
+
+body{
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+
+.button1 {
+	background-color: white; 
+	color: black; 
+	border: 3px solid #4CAF50;
+	font-weight: bold;
+}
+
+.button1:hover {
+	background-color: #4CAF50;
+	color: white;
+}
+
