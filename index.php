@@ -71,7 +71,7 @@
 ?>
 			<tr>
 				<td><b><?php echo $cod_fornecedor; ?></b></td>
-				<td colspan='6' style='text-align:left'><b><?php echo $nome_fornecedor; ?></b></td>
+				<td colspan='7' style='text-align:left'><b><?php echo $nome_fornecedor; ?></b></td>
 			</tr>
 <?php
 		$sub_pagar = 0;
@@ -96,7 +96,7 @@
 				<tr>
 					<td><?php echo $n_documento; ?> | <?php echo $serie_documento; ?></td>
 					<td><?php echo $n_nota; ?></td>
-					<td><?php echo implode('/',array_reverse(explode('-',$dados_pagar_detalhado['data_lancamento']))); ?> | </td>
+					<td><?php echo implode('/',array_reverse(explode('-',$dados_pagar_detalhado['data_lancamento']))); ?></td>
 					<td><?php echo implode('/',array_reverse(explode('-',$dados_pagar_detalhado['data_emissao']))); ?></td>
 					<td><?php echo implode('/',array_reverse(explode('-',$dados_pagar_detalhado['data_vencimento']))); ?></td>
 					<td style='text-align:left'><?php echo $dados_pagar_detalhado['nome_fornecedor']; ?></td>
@@ -117,10 +117,12 @@
 				<td></td>
 				<td></td>
 				<td></td>
+				<td></td>
 				<td><b><?php echo number_format( $sub_pagar, 2, ',', '.'); ?></b></td>
 			</tr>
 			<tr>
 				<td>-</td>
+				<td></td>
 				<td></td>
 				<td></td>
 				<td></td>
