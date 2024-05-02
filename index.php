@@ -111,7 +111,7 @@
 		}
 ?>
 			<tr>
-				<td colspan='5' class='dinheiro_novo'><b>Subtotal</b></td>
+				<td class='dinheiro_novo'><b>Subtotal</b></td>
 				<td></td>
 				<td></td>
 				<td></td>
