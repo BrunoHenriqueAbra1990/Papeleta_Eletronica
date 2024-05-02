@@ -118,7 +118,7 @@
 				<td></td>
 				<td></td>
 				<td></td>
-				<td><b><?php echo number_format( $sub_pagar, 2, ',', '.'); ?></b></td>
+				<td style='text-align:center'><b><?php echo number_format( $sub_pagar, 2, ',', '.'); ?></b></td>
 			</tr>
 			<tr>
 				<td colspan='8'>-</td>
@@ -131,7 +131,7 @@
 	}
 ?>
 			<tr>
-				<td colspan='2' class=''><b>Total de Registros: <?php echo $cont_grupo; ?></b></td>
+				<td colspan='3' class=''><b>Total de Registros: <?php echo $cont_grupo; ?></b></td>
 				<td colspan='4' class='dinheiro_novo'><b>Total Grupo</b></td>
 				<td style='text-align:center'><b><?php echo number_format( $pagar_grupo, 2, ',', '.'); ?></b></td>
 			</tr>
@@ -214,8 +214,8 @@
 	}
 ?>
 			<tr>
-				<td colspan='2' class=''><b>Total de Registros: <?php echo $cont_gos ; ?></b></td>
-				<td colspan='5' class='dinheiro_novo'><b>Total Incorporadora</b></td>
+				<td colspan='3' class=''><b>Total de Registros: <?php echo $cont_gos ; ?></b></td>
+				<td colspan='4' class='dinheiro_novo'><b>Total Incorporadora</b></td>
 				<td style='text-align:center'><b><?php echo number_format( $pagar_gos, 2, ',', '.'); ?></b></td>
 			</tr>
 		
@@ -225,8 +225,8 @@
 	
 		
 			<tr>
-				<td colspan='2' class=''><b>Total Geral de Registros: <?php echo $cont_final; ?></b></td>
-				<td colspan='5' class='dinheiro_novo'><b>Total Geral</b></td>
+				<td colspan='3' class=''><b>Total Geral de Registros: <?php echo $cont_final; ?></b></td>
+				<td colspan='4' class='dinheiro_novo'><b>Total Geral</b></td>
 				<td style='text-align:center'><b><?php echo number_format( $pagar_final, 2, ',', '.'); ?></b></td>
 			</tr>
 
