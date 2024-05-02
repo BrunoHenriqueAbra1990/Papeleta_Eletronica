@@ -33,12 +33,13 @@
       <div id="conteudo"> 
 	  <div id='imprimir_contas_pagar' class=' '>
 			Registros das contas a Pagar Detalhado
-			
+
 			<table>
 				<thead>
 					<tr>
 						<th>Nº Documento | Série</th>
 						<th>Nota</th>
+						<th>Lançamento | Emissão</th>
 						<th>Lançamento | Emissão</th>
 						<th>Vencimento</th>
 						<th>Fornecedor</th>
@@ -47,7 +48,7 @@
 					</tr>
 				</thead>
 				<tbody>
-";
+
 <?php
 	$pagar_final = 0;
 	$pagar_grupo = 0;
@@ -68,12 +69,10 @@
 		$substr_empresa = substr( $nome_fornecedor, 0, 19);
 		
 ?>
-		
 			<tr>
-				<td><b>cod_fornecedor</b></td>
+				<td><b><?php echo $cod_fornecedor; ?></b></td>
 				<td colspan='6' style='text-align:left'><b><?php echo $nome_fornecedor; ?></b></td>
 			</tr>
-		
 <?php
 		$sub_pagar = 0;
 		$sql_pagar_detalhado = "
@@ -97,7 +96,8 @@
 				<tr>
 					<td><?php echo $n_documento; ?> | <?php echo $serie_documento; ?></td>
 					<td><?php echo $n_nota; ?></td>
-					<td><?php echo implode('/',array_reverse(explode('-',$dados_pagar_detalhado['data_lancamento']))); ?> | <?php echo implode('/',array_reverse(explode('-',$dados_pagar_detalhado['data_emissao']))); ?></td>
+					<td><?php echo implode('/',array_reverse(explode('-',$dados_pagar_detalhado['data_lancamento']))); ?> | </td>
+					<td><?php echo implode('/',array_reverse(explode('-',$dados_pagar_detalhado['data_emissao']))); ?></td>
 					<td><?php echo implode('/',array_reverse(explode('-',$dados_pagar_detalhado['data_vencimento']))); ?></td>
 					<td style='text-align:left'><?php echo $dados_pagar_detalhado['nome_fornecedor']; ?></td>
 					<td style='text-align:left'><?php echo $dados_pagar_detalhado['historico']; ?></td>
@@ -120,13 +120,13 @@
 				<td style='text-align:center'><b><?php echo number_format( $sub_pagar, 2, ',', '.'); ?></b></td>
 			</tr>
 			<tr>
+				<td>-</td>
 				<td></td>
 				<td></td>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td></td>
-				<td colspan='7' ></td>
+				<td>-</td>
 			</tr>
 			
 	
