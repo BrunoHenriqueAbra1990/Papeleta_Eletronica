@@ -37,14 +37,14 @@
 			<table>
 				<thead>
 					<tr>
-						<th>Nº Documento | Série</th>
+						<th>Nº Doc. | Série</th>
 						<th>Nota</th>
-						<th>Lançamento | Emissão</th>
-						<th>Lançamento | Emissão</th>
+						<th>Lançamento</th>
+						<th>Emissão</th>
 						<th>Vencimento</th>
 						<th>Fornecedor</th>
 						<th>Histórico</th>
-						<th>Valor Pagar</th>
+						<th>Valor</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -116,7 +116,8 @@
 				<td></td>
 				<td></td>
 				<td></td>
-				<td style='text-align:center'><b><?php echo number_format( $sub_pagar, 2, ',', '.'); ?></b></td>
+				<td></td>
+				<td><b><?php echo number_format( $sub_pagar, 2, ',', '.'); ?></b></td>
 			</tr>
 			<tr>
 				<td>-</td>
