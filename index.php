@@ -111,10 +111,21 @@
 		}
 ?>
 			<tr>
-				<td colspan='6' class='dinheiro_novo'><b>Subtotal</b></td>
+				<td colspan='5' class='dinheiro_novo'><b>Subtotal</b></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
 				<td style='text-align:center'><b><?php echo number_format( $sub_pagar, 2, ',', '.'); ?></b></td>
 			</tr>
 			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
 				<td colspan='7' ></td>
 			</tr>
 			
@@ -125,9 +136,9 @@
 	}
 ?>
 			<tr>
-				<td colspan='2' class=''><b>Total de Registros: $cont_grupo </b></td>
+				<td colspan='2' class=''><b>Total de Registros: <?php echo $cont_grupo; ?></b></td>
 				<td colspan='4' class='dinheiro_novo'><b>Total Grupo</b></td>
-				<td style='text-align:center'><b>".number_format( $pagar_grupo, 2, ',', '.')."</b></td>
+				<td style='text-align:center'><b><?php echo number_format( $pagar_grupo, 2, ',', '.'); ?></b></td>
 			</tr>
 		
 			<tr>
@@ -149,11 +160,10 @@
 		$nome_fornecedor = $dados_pagar['nome_fornecedor'];
 		$substr_empresa = substr( $nome_fornecedor, 0, 19);
 		
-		
 ?>
 			<tr>
-				<td><b>".$cod_fornecedor."</b></td>
-				<td colspan='6' style='text-align:left'><b>".$nome_fornecedor."</b></td>
+				<td><b><?php echo $cod_fornecedor; ?></b></td>
+				<td colspan='6' style='text-align:left'><b><?php echo $nome_fornecedor; ?></b></td>
 			</tr>
 <?php
 		
@@ -178,13 +188,13 @@
 			$n_nota = $dados_pagar_detalhado['n_nota'];
 ?>
 				<tr>
-					<td>".$n_documento." | ".$serie_documento."</td>
-					<td>".$n_nota."</td>
-					<td>".implode('/',array_reverse(explode('-',$dados_pagar_detalhado['data_lancamento'])))." | ".implode('/',array_reverse(explode('-',$dados_pagar_detalhado['data_emissao'])))."</td>
-					<td>".implode('/',array_reverse(explode('-',$dados_pagar_detalhado['data_vencimento'])))."</td>
-					<td style='text-align:left'>".$dados_pagar_detalhado['nome_fornecedor']."</td>
-					<td style='text-align:left'>".$dados_pagar_detalhado['historico']."</td>
-					<td class='dinheiro_novo'>". number_format( $dados_pagar_detalhado['valor_pagar'], 2, ',', '.')."</td>
+					<td><?php echo $n_documento; ?> | <?php echo $serie_documento; ?></td>
+					<td><?php echo $n_nota; ?></td>
+					<td><?php echo implode('/',array_reverse(explode('-',$dados_pagar_detalhado['data_lancamento']))); ?> | <?php echo implode('/',array_reverse(explode('-',$dados_pagar_detalhado['data_emissao']))); ?></td>
+					<td><?php echo implode('/',array_reverse(explode('-',$dados_pagar_detalhado['data_vencimento']))); ?></td>
+					<td style='text-align:left'><?php echo $dados_pagar_detalhado['nome_fornecedor']; ?></td>
+					<td style='text-align:left'><?php echo $dados_pagar_detalhado['historico']; ?></td>
+					<td class='dinheiro_novo'><?php echo  number_format( $dados_pagar_detalhado['valor_pagar'], 2, ',', '.'); ?></td>
 				</tr>
 <?php
 			$sub_pagar += $dados_pagar_detalhado['valor_pagar'];
@@ -195,7 +205,7 @@
 ?>
 			<tr>
 				<td colspan='6' class='dinheiro_novo'><b>Subtotal</b></td>
-				<td style='text-align:center'><b>".number_format( $sub_pagar, 2, ',', '.')."</b></td>
+				<td style='text-align:center'><b><?php echo number_format( $sub_pagar, 2, ',', '.'); ?></b></td>
 			</tr>
 			<tr>
 				<td colspan='7' ></td>
@@ -207,11 +217,10 @@
 		$pagar_final += $sub_pagar;
 	}
 ?>
-		
 			<tr>
-				<td colspan='2' class=''><b>Total de Registros: $cont_gos </b></td>
+				<td colspan='2' class=''><b>Total de Registros: <?php echo $cont_gos ; ?></b></td>
 				<td colspan='4' class='dinheiro_novo'><b>Total Incorporadora</b></td>
-				<td style='text-align:center'><b>".number_format( $pagar_gos, 2, ',', '.')."</b></td>
+				<td style='text-align:center'><b><?php echo number_format( $pagar_gos, 2, ',', '.'); ?></b></td>
 			</tr>
 		
 			<tr>
@@ -222,7 +231,7 @@
 			<tr>
 				<td colspan='2' class=''><b>Total Geral de Registros: $cont_final </b></td>
 				<td colspan='4' class='dinheiro_novo'><b>Total Geral</b></td>
-				<td style='text-align:center'><b>".number_format( $pagar_final, 2, ',', '.')."</b></td>
+				<td style='text-align:center'><b><?php echo number_format( $pagar_final, 2, ',', '.'); ?></b></td>
 			</tr>
 
 
