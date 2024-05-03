@@ -37,7 +37,8 @@
 			<table>
 				<thead>
 					<tr>
-						<th>Nº Doc. | Série</th>
+						<th>Nº Doc.</th>
+						<th>Série</th>
 						<th>Nota</th>
 						<th>Lançamento</th>
 						<th>Emissão</th>
@@ -71,7 +72,7 @@
 ?>
 			<tr>
 				<td><b><?php echo $cod_fornecedor; ?></b></td>
-				<td colspan='7' style='text-align:left'><b><?php echo $nome_fornecedor; ?></b></td>
+				<td colspan='8' style='text-align:left'><b><?php echo $nome_fornecedor; ?></b></td>
 			</tr>
 <?php
 		$sub_pagar = 0;
@@ -94,7 +95,8 @@
 			$n_nota = $dados_pagar_detalhado['n_nota'];
 ?>
 				<tr>
-					<td><?php echo $n_documento; ?> | <?php echo $serie_documento; ?></td>
+					<td><?php echo $n_documento; ?></td>
+					<td><?php echo $serie_documento; ?></td>
 					<td><?php echo $n_nota; ?></td>
 					<td><?php echo implode('/',array_reverse(explode('-',$dados_pagar_detalhado['data_lancamento']))); ?></td>
 					<td><?php echo implode('/',array_reverse(explode('-',$dados_pagar_detalhado['data_emissao']))); ?></td>
@@ -112,16 +114,11 @@
 ?>
 			<tr>
 				<td class='dinheiro_novo'><b>Subtotal</b></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td colspan='7'></td>
 				<td style='text-align:center'><b><?php echo number_format( $sub_pagar, 2, ',', '.'); ?></b></td>
 			</tr>
 			<tr>
-				<td colspan='8'>-</td>
+				<td colspan='9'>-</td>
 			</tr>
 			
 	
@@ -132,16 +129,16 @@
 ?>
 			<tr>
 				<td colspan='3' class=''><b>Total de Registros: <?php echo $cont_grupo; ?></b></td>
-				<td colspan='4' class='dinheiro_novo'><b>Total Grupo</b></td>
+				<td colspan='5' class='dinheiro_novo'><b>Total Grupo</b></td>
 				<td style='text-align:center'><b><?php echo number_format( $pagar_grupo, 2, ',', '.'); ?></b></td>
 			</tr>
 		
 			<tr>
-				<td colspan='8' class='dinheiro_novo'></td>
+				<td colspan='9' class='dinheiro_novo'></td>
 			</tr>
 
 			<tr>
-				<td colspan='8' class='' style='text-align:center'><b>Incorporadora</b></td>
+				<td colspan='9' class='' style='text-align:center'><b>Incorporadora</b></td>
 			</tr>
 
 <?php
@@ -158,7 +155,7 @@
 ?>
 			<tr>
 				<td><b><?php echo $cod_fornecedor; ?></b></td>
-				<td colspan='7' style='text-align:left'><b><?php echo $nome_fornecedor; ?></b></td>
+				<td colspan='8' style='text-align:left'><b><?php echo $nome_fornecedor; ?></b></td>
 			</tr>
 <?php
 		
@@ -183,7 +180,8 @@
 			$n_nota = $dados_pagar_detalhado['n_nota'];
 ?>
 				<tr>
-					<td><?php echo $n_documento; ?> | <?php echo $serie_documento; ?></td>
+					<td><?php echo $n_documento; ?></td>
+					<td><?php echo $serie_documento; ?></td>
 					<td><?php echo $n_nota; ?></td>
 					<td><?php echo implode('/',array_reverse(explode('-',$dados_pagar_detalhado['data_lancamento']))); ?></td>
 					<td> <?php echo implode('/',array_reverse(explode('-',$dados_pagar_detalhado['data_emissao']))); ?></td>
@@ -200,11 +198,11 @@
 		
 ?>
 			<tr>
-				<td colspan='7' class='dinheiro_novo'><b>Subtotal</b></td>
+				<td colspan='8' class='dinheiro_novo'><b>Subtotal</b></td>
 				<td style='text-align:center'><b><?php echo number_format( $sub_pagar, 2, ',', '.'); ?></b></td>
 			</tr>
 			<tr>
-				<td colspan='8' ></td>
+				<td colspan='9' ></td>
 			</tr>
 			
 <?php
@@ -215,18 +213,18 @@
 ?>
 			<tr>
 				<td colspan='3' class=''><b>Total de Registros: <?php echo $cont_gos ; ?></b></td>
-				<td colspan='4' class='dinheiro_novo'><b>Total Incorporadora</b></td>
+				<td colspan='5' class='dinheiro_novo'><b>Total Incorporadora</b></td>
 				<td style='text-align:center'><b><?php echo number_format( $pagar_gos, 2, ',', '.'); ?></b></td>
 			</tr>
 		
 			<tr>
-				<td colspan='8' class='dinheiro_novo'></td>
+				<td colspan='9' class='dinheiro_novo'></td>
 			</tr>
 	
 		
 			<tr>
 				<td colspan='3' class=''><b>Total Geral de Registros: <?php echo $cont_final; ?></b></td>
-				<td colspan='4' class='dinheiro_novo'><b>Total Geral</b></td>
+				<td colspan='5' class='dinheiro_novo'><b>Total Geral</b></td>
 				<td style='text-align:center'><b><?php echo number_format( $pagar_final, 2, ',', '.'); ?></b></td>
 			</tr>
 
