@@ -83,4 +83,10 @@ body{
 
 td{
 	border:#1d1d1d solid 1px;
+	padding-left: 2px;
+	font-size: 10px;
+}
+
+.dinheiro_novo{
+	text-align: right;
 }

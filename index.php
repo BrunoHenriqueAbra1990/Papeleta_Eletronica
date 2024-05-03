@@ -223,8 +223,8 @@
 	
 		
 			<tr>
-				<td colspan='3' class=''><b>Total Geral de Registros: <?php echo $cont_final; ?></b></td>
-				<td colspan='5' class='dinheiro_novo'><b>Total Geral</b></td>
+				<td colspan='4' class=''><b>Total Geral de Registros: <?php echo $cont_final; ?></b></td>
+				<td colspan='4' class='dinheiro_novo'><b>Total Geral</b></td>
 				<td style='text-align:center'><b><?php echo number_format( $pagar_final, 2, ',', '.'); ?></b></td>
 			</tr>
 
