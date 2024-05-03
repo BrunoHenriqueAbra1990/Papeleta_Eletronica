@@ -72,7 +72,7 @@
 ?>
 			<tr>
 				<td><b><?php echo $cod_fornecedor; ?></b></td>
-				<td colspan='8' style='text-align:left'><b><?php echo $nome_fornecedor; ?></b></td>
+				<td colspan='9' style='text-align:left'><b><?php echo $nome_fornecedor; ?></b></td>
 			</tr>
 <?php
 		$sub_pagar = 0;
@@ -104,6 +104,7 @@
 					<td style='text-align:left'><?php echo $dados_pagar_detalhado['nome_fornecedor']; ?></td>
 					<td style='text-align:left'><?php echo $dados_pagar_detalhado['historico']; ?></td>
 					<td class='dinheiro_novo'><?php echo  number_format( $dados_pagar_detalhado['valor_pagar'], 2, ',', '.'); ?></td>
+					<td></td>
 				</tr>
 <?php
 			$sub_pagar += $dados_pagar_detalhado['valor_pagar'];
@@ -155,7 +156,7 @@
 ?>
 			<tr>
 				<td><b><?php echo $cod_fornecedor; ?></b></td>
-				<td colspan='8' style='text-align:left'><b><?php echo $nome_fornecedor; ?></b></td>
+				<td colspan='9' style='text-align:left'><b><?php echo $nome_fornecedor; ?></b></td>
 			</tr>
 <?php
 		
@@ -189,6 +190,7 @@
 					<td style='text-align:left'><?php echo $dados_pagar_detalhado['nome_fornecedor']; ?></td>
 					<td style='text-align:left'><?php echo $dados_pagar_detalhado['historico']; ?></td>
 					<td class='dinheiro_novo'><?php echo  number_format( $dados_pagar_detalhado['valor_pagar'], 2, ',', '.'); ?></td>
+					<td></td>
 				</tr>
 <?php
 			$sub_pagar += $dados_pagar_detalhado['valor_pagar'];
