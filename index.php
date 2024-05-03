@@ -105,9 +105,9 @@
 					<td style='text-align:left'><?php echo $dados_pagar_detalhado['historico']; ?></td>
 					<td class='dinheiro_novo'><?php echo  number_format( $dados_pagar_detalhado['valor_pagar'], 2, ',', '.'); ?></td>
 					<td>
-					<a onclick='validaResponsavel()' class='fa-regular fa-circle-check fa-1x' style='color:green; background-color:transparent' title='Validar pelo Responsável' ></a>&nbsp;
-					<a onclick='visualizaRegistro()' class='far fa-eye fa-1x' style='color:blue; background-color:transparent' title='Visualização' ></a>&nbsp;
-					<a onclick='validaResponsavel()' class='fa-regular fa-circle-xmark fa-1x' style='color:red; background-color:transparent' title='Validar pelo Responsável' ></a>&nbsp;
+					<a onclick='validaResponsavel()' class='fa-regular fa-circle-check fa-2x' style='color:green; background-color:transparent' title='Validar pelo Responsável' ></a>&nbsp;
+					<a onclick='visualizaRegistro()' class='far fa-eye fa-2x' style='color:blue; background-color:transparent' title='Visualização' ></a>&nbsp;
+					<a onclick='validaResponsavel()' class='fa-regular fa-circle-xmark fa-2x' style='color:red; background-color:transparent' title='Validar pelo Responsável' ></a>&nbsp;
 					</td>
 				</tr>
 <?php
