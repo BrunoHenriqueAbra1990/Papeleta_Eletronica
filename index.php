@@ -33,7 +33,6 @@
       <div id="conteudo"> 
 	  <div id='imprimir_contas_pagar' class=' '>
 			Registros das contas a Pagar Detalhado
-
 			<table>
 				<thead>
 					<tr>
