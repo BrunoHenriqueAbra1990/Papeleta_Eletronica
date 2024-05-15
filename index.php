@@ -1,9 +1,14 @@
 <?php 
 	$diretorio = "../../"; 
 	include_once "../../conectar.php"; 
-	$DataInicial = $_GET['DataInicial'];
-	$DataFinal = $_GET['DataFinal'];
-	
+	if((!empty($_GET['DataInicial']))and(!empty($_GET['DataFinal']))){
+		$DataInicial = $_GET['DataInicial'];
+		$DataFinal = $_GET['DataFinal'];
+	}
+	else{
+		$DataInicial = "";
+		$DataFinal = "";
+	}
 ?>
 <!doctype html>
 <html>
@@ -14,233 +19,68 @@
 		<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
 
 		<meta http-equiv="Content-Language" content="pt-br">
+		<script src="<?php echo $diretorio; ?>ajax/jszip.min.js"></script>
+		<script src="<?php echo $diretorio; ?>DataTables/jQuery-3.3.1/jquery-3.3.1.js"></script>
 		<link href="<?php echo $diretorio; ?>Font-Awesome-6.x/css/all.css" rel="stylesheet">
+
 		<!-- DATA TABLES -->
 		<style type="text/css">
 			@import "<?php echo $diretorio; ?>DataTables/DataTables-1.10.18/css/bootstrap2.css";
 		</style>
 		<link href="links_includes/estilos.css" rel="stylesheet" type="text/css">
+		
+		<!-- Popper.JS -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+		<!-- Bootstrap JS -->
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+		<!-- jQuery Custom Scroller CDN -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
 	</head>
 
 	<body>
-    <h1>Tela de autorização da Papeleta Eletrônica</h1>
-      <div class="col-md-12 form-row" style="font-size:14px;">
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <b style='color:red'>Atenção: &nbsp;</b> 
-          É imprescindível que os faturamentos, tanto de Notas de Serviço quanto de Notas de Produtos, sejam enviados para o email: &nbsp;
-        <b style='color:red'> notafiscal@escritoriovotuporanga.com.br</b>
-      </div>
-      
-      <div id="conteudo"> 
-	  <div id='imprimir_contas_pagar' class=' '>
-			Registros das contas a Pagar Detalhado
-			<table>
-				<thead>
-					<tr>
-						<th>Nº Doc.</th>
-						<th>Série</th>
-						<th>Nota</th>
-						<th>Lançamento</th>
-						<th>Emissão</th>
-						<th>Vencimento</th>
-						<th>Fornecedor</th>
-						<th>Histórico</th>
-						<th>Valor</th>
-					</tr>
-				</thead>
-				<tbody>
+		<h1>Tela de autorização da Papeleta Eletrônica</h1>
+		<div class="col-md-12 form-row" style="font-size:14px;">
+			<div class="col-md-3"></div>
+			<div class="col-md-5 form-row" id='periodo_datas'>
+				<div class="col-md-5">
+					<p class="col-md-12 ">Data Inicial Vencimento:
+						<input type="date" id="data_inicial" name="data_inicial" class="form-control col-md-12" value="<?php echo $DataInicial;?>" tabindex="7">
+					</p>
+				</div>
 
-<?php
-	$pagar_final = 0;
-	$pagar_grupo = 0;
-	$pagar_gos = 0;
-	
-	$cont_final = 0;
-	$cont_grupo = 0;
-	$cont_gos = 0;
-	
-	$sql_pagar = "Select cod_fornecedor, nome_fornecedor from pagar where 
-		data_vencimento >= '$DataInicial' and data_vencimento <= '$DataFinal' 
-		and cod_empresa != '90' and bloco_upload > '0' and (tipo_lancamento <= '560' or tipo_lancamento = '681')
-	group by cod_fornecedor order by nome_fornecedor";
-	$result_pagar = mysqli_query($con_softline, $sql_pagar);
-	while($dados_pagar = mysqli_fetch_assoc($result_pagar)){
-		$cod_fornecedor = $dados_pagar['cod_fornecedor'];
-		$nome_fornecedor = $dados_pagar['nome_fornecedor'];
-		$substr_empresa = substr( $nome_fornecedor, 0, 19);
-		
-?>
-			<tr>
-				<td><b><?php echo $cod_fornecedor; ?></b></td>
-				<td colspan='9' style='text-align:left'><b><?php echo $nome_fornecedor; ?></b></td>
-			</tr>
-<?php
-		$sub_pagar = 0;
-		$sql_pagar_detalhado = "
-			Select * from pagar 
-			LEFT JOIN tipo_lancamento ON cod_lancamento = tipo_lancamento
-			where 
-			data_vencimento >= '$DataInicial' and data_vencimento <= '$DataFinal' 
-			and ((data_pagamento >= '$DataInicial' and data_pagamento <= '$DataFinal')
-			or (data_pagamento = '0000-00-00') or (data_pagamento is null))
-			and cod_fornecedor = '$cod_fornecedor' 
-			and (tipo_lancamento <= '560' or tipo_lancamento = '681')
-			and bloco_upload > '0' and excluido = '0' and cod_empresa != '90'
-			order by nome_fornecedor";
-			
-		$result_pagar_detalhado = mysqli_query($con_softline, $sql_pagar_detalhado);
-		while($dados_pagar_detalhado = mysqli_fetch_assoc($result_pagar_detalhado)){
-			$n_documento = $dados_pagar_detalhado['n_documento'];
-			$serie_documento = $dados_pagar_detalhado['serie_documento'];
-			$n_nota = $dados_pagar_detalhado['n_nota'];
-?>
-				<tr>
-					<td><?php echo $n_documento; ?></td>
-					<td><?php echo $serie_documento; ?></td>
-					<td><?php echo $n_nota; ?></td>
-					<td><?php echo implode('/',array_reverse(explode('-',$dados_pagar_detalhado['data_lancamento']))); ?></td>
-					<td><?php echo implode('/',array_reverse(explode('-',$dados_pagar_detalhado['data_emissao']))); ?></td>
-					<td><?php echo implode('/',array_reverse(explode('-',$dados_pagar_detalhado['data_vencimento']))); ?></td>
-					<td style='text-align:left'><?php echo $dados_pagar_detalhado['nome_fornecedor']; ?></td>
-					<td style='text-align:left'><?php echo $dados_pagar_detalhado['historico']; ?></td>
-					<td class='dinheiro_novo'><?php echo  number_format( $dados_pagar_detalhado['valor_pagar'], 2, ',', '.'); ?></td>
-					<td>
-					<a onclick='validaResponsavel()' class='fa-regular fa-circle-check fa-2x' style='color:green; background-color:transparent' title='Validar pelo Responsável' ></a>&nbsp;
-					<a onclick='visualizaRegistro()' class='far fa-eye fa-2x' style='color:blue; background-color:transparent' title='Visualização' ></a>
-					<a onclick='validaResponsavel()' class='fa-regular fa-circle-xmark fa-2x' style='color:red; background-color:transparent' title='Validar pelo Responsável' ></a>
-					</td>
-				</tr>
-<?php
-			$sub_pagar += $dados_pagar_detalhado['valor_pagar'];
-			
-			$cont_final ++;
-			$cont_grupo ++;
-		}
-?>
-			<tr>
-				<td class='dinheiro_novo'><b>Subtotal</b></td>
-				<td colspan='7'></td>
-				<td style='text-align:center'><b><?php echo number_format( $sub_pagar, 2, ',', '.'); ?></b></td>
-			</tr>
-			<tr>
-				<td colspan='9'>-</td>
-			</tr>
-			
-	
-<?php
-		$pagar_final += $sub_pagar;
-		$pagar_grupo += $sub_pagar;
-	}
-?>
-			<tr>
-				<td colspan='3' class=''><b>Total de Registros: <?php echo $cont_grupo; ?></b></td>
-				<td colspan='5' class='dinheiro_novo'><b>Total Grupo</b></td>
-				<td style='text-align:center'><b><?php echo number_format( $pagar_grupo, 2, ',', '.'); ?></b></td>
-			</tr>
-		
-			<tr>
-				<td colspan='9' class='dinheiro_novo'></td>
-			</tr>
-
-			<tr>
-				<td colspan='9' class='' style='text-align:center'><b>Incorporadora</b></td>
-			</tr>
-
-<?php
-	$sql_pagar = "Select cod_fornecedor, nome_fornecedor from pagar where 
-		data_vencimento >= '$DataInicial' and data_vencimento <= '$DataFinal' 
-		and cod_empresa ='90' and bloco_upload > '0' and tipo_lancamento <= '560'
-	group by cod_fornecedor order by nome_fornecedor";
-	$result_pagar = mysqli_query($con_softline, $sql_pagar);
-	while($dados_pagar = mysqli_fetch_assoc($result_pagar)){
-		$cod_fornecedor = $dados_pagar['cod_fornecedor'];
-		$nome_fornecedor = $dados_pagar['nome_fornecedor'];
-		$substr_empresa = substr( $nome_fornecedor, 0, 19);
-		
-?>
-			<tr>
-				<td><b><?php echo $cod_fornecedor; ?></b></td>
-				<td colspan='9' style='text-align:left'><b><?php echo $nome_fornecedor; ?></b></td>
-			</tr>
-<?php
-		
-		$sub_pagar = 0;
-		$sql_pagar_detalhado = "
-			Select * from pagar 
-			LEFT JOIN tipo_lancamento ON cod_lancamento = tipo_lancamento
-			where 
-			data_vencimento >= '$DataInicial' and data_vencimento <= '$DataFinal' 
-			and ((data_pagamento >= '$DataInicial' and data_pagamento <= '$DataFinal')
-			or (data_pagamento = '0000-00-00') or (data_pagamento is null))
-			and cod_fornecedor = '$cod_fornecedor' 
-			and ((fornecedores = '1')or(impostos = '1')or(parcelamento_faz_prev = '1')
-				or(recursos_humanos = '1')or(emprestimos_vencimentos = '1')or(inss_fgts = '1')or(pagamento_antecipado = '1'))
-			and bloco_upload > '0' and excluido = '0' and cod_empresa = '90'
-			order by nome_fornecedor";
-			
-		$result_pagar_detalhado = mysqli_query($con_softline, $sql_pagar_detalhado);
-		while($dados_pagar_detalhado = mysqli_fetch_assoc($result_pagar_detalhado)){
-			$n_documento = $dados_pagar_detalhado['n_documento'];
-			$serie_documento = $dados_pagar_detalhado['serie_documento'];
-			$n_nota = $dados_pagar_detalhado['n_nota'];
-?>
-				<tr>
-					<td><?php echo $n_documento; ?></td>
-					<td><?php echo $serie_documento; ?></td>
-					<td><?php echo $n_nota; ?></td>
-					<td><?php echo implode('/',array_reverse(explode('-',$dados_pagar_detalhado['data_lancamento']))); ?></td>
-					<td> <?php echo implode('/',array_reverse(explode('-',$dados_pagar_detalhado['data_emissao']))); ?></td>
-					<td><?php echo implode('/',array_reverse(explode('-',$dados_pagar_detalhado['data_vencimento']))); ?></td>
-					<td style='text-align:left'><?php echo $dados_pagar_detalhado['nome_fornecedor']; ?></td>
-					<td style='text-align:left'><?php echo $dados_pagar_detalhado['historico']; ?></td>
-					<td class='dinheiro_novo'><?php echo  number_format( $dados_pagar_detalhado['valor_pagar'], 2, ',', '.'); ?></td>
-					<td></td>
-				</tr>
-<?php
-			$sub_pagar += $dados_pagar_detalhado['valor_pagar'];
-			$cont_final ++;
-			$cont_gos ++;
-		}
-		
-?>
-			<tr>
-				<td colspan='8' class='dinheiro_novo'><b>Subtotal</b></td>
-				<td style='text-align:center'><b><?php echo number_format( $sub_pagar, 2, ',', '.'); ?></b></td>
-			</tr>
-			<tr>
-				<td colspan='9' ></td>
-			</tr>
-			
-<?php
-		
-		$pagar_gos += $sub_pagar;
-		$pagar_final += $sub_pagar;
-	}
-?>
-			<tr>
-				<td colspan='3' class=''><b>Total de Registros: <?php echo $cont_gos ; ?></b></td>
-				<td colspan='5' class='dinheiro_novo'><b>Total Incorporadora</b></td>
-				<td style='text-align:center'><b><?php echo number_format( $pagar_gos, 2, ',', '.'); ?></b></td>
-			</tr>
-		
-			<tr>
-				<td colspan='9' class='dinheiro_novo'></td>
-			</tr>
-	
-		
-			<tr>
-				<td colspan='4' class=''><b>Total Geral de Registros: <?php echo $cont_final; ?></b></td>
-				<td colspan='4' class='dinheiro_novo'><b>Total Geral</b></td>
-				<td style='text-align:center'><b><?php echo number_format( $pagar_final, 2, ',', '.'); ?></b></td>
-			</tr>
-
-				</tbody>
-			<table>
+				<div class="col-md-5">
+					<p class="col-md-12 ">Data Final Vencimento:
+						<input type="date" id="data_final" name="data_final" class="form-control col-md-12" value="<?php echo $DataFinal;?>" tabindex="8">
+					</p>
+				</div>
+				
+				<div class="col-md-2" id="" style='text-align: right'>
+					<br>
+					<button id="" class="btn btn-default btn-xs" title="Recarregar Informações" onClick="carregarLista()">
+						Pesquisar
+					</button>
+				</div>
+			</div>
 		</div>
+      
+		<div id="conteudo"> 
+			<input type="hidden" id="retorno_id_usuario" name="retorno_id_usuario" value="" readonly />
+			<div id='imprimir_contas_pagar' class=' '>
 
-      </div>
-	  <script  src="js/custom.js"></script>
-  </body>
+			</div>
+		</div>
+		
+		<?php 
+			include_once "processa/div_modal_lista.php"; 
+		?>
+		
+		<div id="cont_position_topo" style="z-index:999999">
+			<div id="cont_boton_top" class="trans">
+				<a style="cursor:pointer;" id="top">. </a>
+			</div>
+		</div>
+		<script src="js/custom.js"></script>
+	</body>
 </html>
 
 
