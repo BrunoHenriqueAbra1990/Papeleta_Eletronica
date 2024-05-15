@@ -3,6 +3,7 @@
 	include_once "../../conectar.php"; 
 	$DataInicial = $_GET['DataInicial'];
 	$DataFinal = $_GET['DataFinal'];
+	
 ?>
 <!doctype html>
 <html>
