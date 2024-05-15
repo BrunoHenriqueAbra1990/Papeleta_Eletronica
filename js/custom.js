@@ -154,7 +154,6 @@
 		}
 	}
 	
-	
 
 	function validarTodos() {
 		var retorno_id_usuario = document.getElementById("retorno_id_usuario").value;
