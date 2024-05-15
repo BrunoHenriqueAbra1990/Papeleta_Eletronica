@@ -91,3 +91,59 @@ td{
 .dinheiro_novo{
 	text-align: right;
 }
+
+.td_botoes{
+	width: 8% !important;
+}
+
+tr{
+	background-color: #c7cbcf;
+}
+
+
+
+#periodo_datas input[type='date'] {
+    height: 32px;
+}
+
+#periodo_datas .btn{
+	border:#1d1d1d solid 1px;
+	font-size: 14px;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 0px;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    user-select: none;
+    background-image: none;
+	color: black;
+	height: 32px;
+}
+
+#periodo_datas .btn:hover {
+	background-color: #d9d7d7;
+}
+
+.modal-xl {
+    max-width: 1080px;
+}
+
+.dinheiro{
+	text-align: right;
+}
+
+#cont_boton_top a {
+    position: fixed;
+    z-index: 999;
+    background-image: url(../../../imagens/arrow_up_1.png);
+    background-repeat: no-repeat;
+    width: 50px;
+    height: 50px;
+    float: right;
+    bottom: 30px;
+    right: 0;
+    color: hsla(0,0%,100%,0);
+}
