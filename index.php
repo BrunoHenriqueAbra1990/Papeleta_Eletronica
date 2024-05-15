@@ -14,7 +14,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Noromix - Papeleta Eletrônica</title>
+		<title>Noromix - Liberação Pagamento Eletrônico</title>
 		<link rel="shortcut icon" href="<?php echo $diretorio; ?>favicon.ico" />
 		<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
 
@@ -38,7 +38,7 @@
 	</head>
 
 	<body>
-		<h1>Tela de autorização da Papeleta Eletrônica</h1>
+		<h1>Tela de autorização da Pagamento Eletrônico</h1>
 		<div class="col-md-12 form-row" style="font-size:14px;">
 			<div class="col-md-3"></div>
 			<div class="col-md-5 form-row" id='periodo_datas'>
